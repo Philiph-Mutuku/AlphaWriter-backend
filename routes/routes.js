@@ -6,8 +6,7 @@ const router = express.Router();
 
 //Get all the user's notes
 router.get('/', (req, res) => {
-    const Notes = Note;
-    console.log(Notes);
+    res.json({ mssg: 'Getting all workouts' })
 })
 
 //Getting a single note(Search)
@@ -16,7 +15,7 @@ router.get('/id', (req, res) => {
 })
 
 //Updating a note
-router.get('/id', (req, res) => {
+router.patch('/id', (req, res) => {
     
 })
 
@@ -29,6 +28,6 @@ router.post('/', (req, res) => {
 })
 
 //Deleting a note
-router.get('/id', (req, res) => {
+router.delete('/id', (req, res) => {
     
 })
