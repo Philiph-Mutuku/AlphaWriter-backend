@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./routes/routes');
 require('dotenv').config();
 
 //Setting up express app
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 //Routes
+app.use('/api/notes', router);
 
 //Listening for requests
 mongoose.connect(process.env.MONGO_URI)
