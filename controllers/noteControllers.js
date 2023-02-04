@@ -10,7 +10,9 @@ const createNewNote = async (req, res) => {
 }
 
 const getAllNotes = async (req, res) => {
-    res.json({ mssg: 'Getting all Note' })
+    const notesList = await Note.find({ createdAt: -1 })
+      .then (() => {console.log(notesList)})
+      .catch((error) => console.log(error))
 }
 
 const getSingleNote = async (req, res) => {
