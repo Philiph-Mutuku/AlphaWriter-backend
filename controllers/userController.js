@@ -2,18 +2,20 @@ const { findOne } = require("../models/userModel");
 const User = require("../models/userModel")
 
 const createNewUser = async (req, res) => {
-    const {username, email, password} = req.body;
+    const {name, userEmail, password} = req.body;
+    const userCheck = await User.find({email: userEmail})
 
      //Check if user already exists in database
+     if(userCheck) {
+        res.status(200).json({mssg: `User already exists, I can prove it...`})
+     } else {
+         //If user doesn't exist, create new user
+        const user = await User.create({username: username, email: email, password: password})
 
-     
-     //If user doesn't exist, create new user
-     const user = await User.create({username: username, email: email, password: password})
-       .then(() => {JSON.stringify(user)})
-       .catch((error) => console.log(error));
-
-     //Redirect user to home page with updated information
-     res.status(200).redirect('/')
+        res.status(200).json(user)
+        //Redirect user to home page with updated information
+        //res.status(200).redirect('/')
+     }
 }
 
 const deleteUser = async (req, res) => {
