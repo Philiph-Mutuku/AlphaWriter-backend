@@ -11,7 +11,7 @@ notesRouter.get('/', getAllNotes);
 notesRouter.get('/:id', getSingleNote);
 
 //Updating a note
-notesnotesRouter.patch('/:id', updateNotes);
+notesRouter.patch('/:id', updateNotes);
 
 //Creating a new note
 notesRouter.post('/', createNewNote);

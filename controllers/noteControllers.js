@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const Note = require("../models/noteModel");
 
 const createNewNote = async (req, res) => {
@@ -10,33 +11,31 @@ const createNewNote = async (req, res) => {
 }
 
 const getAllNotes = async (req, res) => {
-    const notesList = await Note.find({ createdAt: -1 })
-      .then (() => {console.log(notesList)})
-      .catch((error) => console.log(error))
+    const notesList = await Note.find({}).sort({createdAt: -1})
+    
+    res.status(200).json(notesList)
 }
 
 const getSingleNote = async (req, res) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     const note = await Note.findById(id)
-      .then(() => {
-        res.status(200).json(note)
-      })
-      .catch((error) => {
-        res.status(404).json({err: error})
-      })
+    res.status(200).json(note)
 }
 
 const updateNotes = async (req, res) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
 
-    const note = User.findByIdAndUpdate(_id)
+    const note = await Note.findByIdAndUpdate(id)
+
+    res.status(200).json(note);
 }
 
 const deleteNote = async  (req, res) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
 
-  const note = await Note.findByIdAndDelete(_id)
+  const note = await Note.findByIdAndDelete(id)
+  res.status(200).json({mssg: `Succesfully deleted note ${id}`})
 }
 
 module.exports = {

@@ -1,5 +1,5 @@
 const express = require('express');
-const { createNewUser, deleteUser } = require('../controllers/userController');
+const { createNewUser, deleteUser, login } = require('../controllers/userController');
 const userRouter = express.Router();
 
 //Creating a new User
@@ -10,3 +10,5 @@ userRouter.delete('/delete/:email', deleteUser);
 
 //Login
 userRouter.post('/login/', login);
+
+module.exports = userRouter;
