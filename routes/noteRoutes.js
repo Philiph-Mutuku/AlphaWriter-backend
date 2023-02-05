@@ -1,23 +1,22 @@
 const express = require('express');
 const { getAllNotes, getSingleNote, updateNotes, createNewNote, deleteNote } = require('../controllers/noteControllers');
 const Note = require('../models/noteModel');
-require('dotenv').config();
 
-const router = express.Router();
+const notesRouter = express.Router();
 
 //Get all the user's notes
-router.get('/', getAllNotes);
+notesRouter.get('/', getAllNotes);
 
 //Getting a single note(Search)
-router.get('/:id', getSingleNote);
+notesRouter.get('/:id', getSingleNote);
 
 //Updating a note
-router.patch('/:id', updateNotes);
+notesnotesRouter.patch('/:id', updateNotes);
 
 //Creating a new note
-router.post('/', createNewNote);
+notesRouter.post('/', createNewNote);
 
 //Deleting a note
-router.delete('/:id', deleteNote)
+notesRouter.delete('/:id', deleteNote)
 
-module.exports = router;
+module.exports = notesRouter;
