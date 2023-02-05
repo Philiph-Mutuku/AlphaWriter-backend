@@ -1,5 +1,4 @@
 const Note = require("../models/noteModel");
-const User = require("../models/userModel");
 
 const createNewNote = async (req, res) => {
     const { title, description, body } = req.body;
@@ -31,11 +30,13 @@ const getSingleNote = async (req, res) => {
 const updateNotes = async (req, res) => {
     const { id } = req.params.id;
 
-    const note = User.findByIdAndUpdate(_id, req.body)
+    const note = User.findByIdAndUpdate(_id)
 }
 
 const deleteNote = async  (req, res) => {
-    res.json({mssg: `Deleteing note witb id ${req.params.id}`})
+  const { id } = req.params.id;
+
+  const note = await Note.findByIdAndDelete(_id)
 }
 
 module.exports = {
