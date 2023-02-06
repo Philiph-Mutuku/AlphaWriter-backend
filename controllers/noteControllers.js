@@ -19,23 +19,28 @@ const getAllNotes = async (req, res) => {
 const getSingleNote = async (req, res) => {
     const { id } = req.params;
 
-    const note = await Note.findById(id)
-    res.status(200).json(note)
+    if(mongoose.isValidObjectId(id)) {
+        const note = await Note.findById(id)
+        res.status(200).json(note)
+    }
 }
 
 const updateNotes = async (req, res) => {
     const { id } = req.params;
 
-    const note = await Note.findByIdAndUpdate(id)
-
-    res.status(200).json(note);
+    if(mongoose.isValidObjectId(id)) {
+        const note = await Note.findByIdAndUpdate(id)
+        res.status(200).json(note);
+    }
 }
 
 const deleteNote = async  (req, res) => {
-  const { id } = req.params;
+    const { id } = req.params;
 
-  const note = await Note.findByIdAndDelete(id)
-  res.status(200).json({mssg: `Succesfully deleted note ${id}`})
+  if(mongoose.isValidObjectId(id)) {
+    const note = await Note.findByIdAndDelete(id)
+    res.status(200).json({mssg: `Succesfully deleted note ${id}`})
+  }
 }
 
 module.exports = {
